@@ -1,0 +1,7 @@
+(jbuild_version 1)
+
+(executable
+  ((name simple)
+   (public_name simple)
+   (libraries (h3))
+   (modules (simple))))

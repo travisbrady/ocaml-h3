@@ -1,0 +1,7 @@
+(jbuild_version 1)
+
+(library
+  ((name h3)
+   (public_name h3)
+   (c_names (h3_stubs))
+   (c_library_flags (-lh3))))

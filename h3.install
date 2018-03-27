@@ -1,0 +1,20 @@
+lib: [
+  "_build/install/default/lib/h3/META" {"META"}
+  "_build/install/default/lib/h3/opam" {"opam"}
+  "_build/install/default/lib/h3/h3.cmi" {"h3.cmi"}
+  "_build/install/default/lib/h3/h3.cmx" {"h3.cmx"}
+  "_build/install/default/lib/h3/h3.cmt" {"h3.cmt"}
+  "_build/install/default/lib/h3/h3.ml" {"h3.ml"}
+  "_build/install/default/lib/h3/h3.cma" {"h3.cma"}
+  "_build/install/default/lib/h3/libh3_stubs.a" {"libh3_stubs.a"}
+  "_build/install/default/lib/h3/h3.cmxa" {"h3.cmxa"}
+  "_build/install/default/lib/h3/h3.a" {"h3.a"}
+  "_build/install/default/lib/h3/h3.cmxs" {"h3.cmxs"}
+  "_build/install/default/lib/h3/h3.dune" {"h3.dune"}
+]
+bin: [
+  "_build/install/default/bin/simple" {"simple"}
+]
+stublibs: [
+  "_build/install/default/lib/stublibs/dllh3_stubs.so"
+]

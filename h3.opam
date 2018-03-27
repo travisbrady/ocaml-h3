@@ -1,0 +1,27 @@
+opam-version: "1.2"
+maintainer: "Travis Brady <travis.brady@gmail.com>"
+authors: ["Travis Brady <travis.brady@gmail.com>"]
+homepage: "https://github.com/travisbrady/ocaml-h3"
+dev-repo: "https://github.com/travisbrady/ocaml-h3"
+bug-reports: "https://github.com/travisbrady/ocaml-h3/issues"
+tags: [ "computer" ]
+license: "BSD3"
+version: "dev"
+build: [["jbuilder" "build" "--only-packages" "h3" "--root" "." "-j" jobs "@install"]]
+install: []
+remove:  []
+
+depends: [
+  "ctypes" {>= "0.5"}
+  "ctypes-foreign"
+  "ocamlfind" {build}
+  "jbuilder" {build}
+]
+
+depopts: [
+]
+
+conflicts: [
+]
+
+available: [ ocaml-version >= "4.04" ]
