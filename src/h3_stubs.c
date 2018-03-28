@@ -90,12 +90,7 @@ CAMLprim value caml_kRing(value caml_h3, value caml_k) {
 CAMLprim value caml_kRingDistances(value caml_h3, value caml_k) {
     CAMLparam2(caml_h3, caml_k);
     CAMLlocal3(ret, neigh, dists);
-    // CAMLlocal2(ret, this_tup);
-    printf("[c] caml_kRingDistances\n");
-    fflush(stdout);
     int k = Int_val(caml_k);
-    printf("[c] caml_kRingDistances %d\n", k);
-    fflush(stdout);
     H3Index* rings = (H3Index*)calloc(k, sizeof(H3Index));
     int* distances = (int*)calloc(k, sizeof(int));
     kRingDistances(Int64_val(caml_h3), k, rings, distances);
@@ -106,12 +101,38 @@ CAMLprim value caml_kRingDistances(value caml_h3, value caml_k) {
     for (int i = 0; i < k; i++) {
         Field(neigh, i) = caml_copy_int64(rings[i]);
         Field(dists, i) = distances[i];
-        // Store_field(this_tup, 0, caml_copy_int64(rings[i]);
-        // Store_field(this_tup, 1, distances[i]);
-        // Field(ret, i) = this_tup;
     }
     Field(ret, 0) = neigh;
     Field(ret, 1) = dists;
+    free(rings);
+    free(distances);
+    CAMLreturn(ret);
+}
+
+CAMLprim value caml_hexRange(value v_origin, value v_k) {
+    H3Index out;
+    int res = hexRange(Int64_val(v_origin), Int_val(v_k), &out);
+    return caml_copy_int64(out);
+}
+
+CAMLprim value caml_hexRangeDistances(value v_origin, value v_k) {
+    CAMLparam2(v_origin, v_k);
+    CAMLlocal3(ret, neigh, dists);
+    int k = Int_val(v_k);
+    H3Index* rings = (H3Index*)calloc(k, sizeof(H3Index));
+    int* distances = (int*)calloc(k, sizeof(int));
+    int res = hexRangeDistances(Int64_val(v_origin), k, rings, distances);
+    ret = caml_alloc_tuple(3);
+    neigh = caml_alloc_tuple(k);
+    dists = caml_alloc_tuple(k);
+    ret = caml_alloc(k, Abstract_tag);
+    for (int i = 0; i < k; i++) {
+        Field(neigh, i) = caml_copy_int64(rings[i]);
+        Field(dists, i) = distances[i];
+    }
+    Field(ret, 0) = neigh;
+    Field(ret, 1) = dists;
+    Field(ret, 2) = res;
     free(rings);
     free(distances);
     CAMLreturn(ret);

@@ -1,3 +1,16 @@
 B ../_build/default/src/.h3.objs
+B /Users/travisbrady/.opam/4.05.0/lib/base
+B /Users/travisbrady/.opam/4.05.0/lib/base/caml
+B /Users/travisbrady/.opam/4.05.0/lib/base/shadow_stdlib
+B /Users/travisbrady/.opam/4.05.0/lib/ppx_inline_test/config
+B /Users/travisbrady/.opam/4.05.0/lib/ppx_inline_test/runtime-lib
+B /Users/travisbrady/.opam/4.05.0/lib/sexplib0
+FLG -ppx '/Users/travisbrady/code/hub/ocaml-h3/_build/default/.ppx/ppx_inline_test/ppx.exe --as-ppx --cookie '\''library-name="h3"'\'''
 FLG -w -40
 S .
+S /Users/travisbrady/.opam/4.05.0/lib/base
+S /Users/travisbrady/.opam/4.05.0/lib/base/caml
+S /Users/travisbrady/.opam/4.05.0/lib/base/shadow_stdlib
+S /Users/travisbrady/.opam/4.05.0/lib/ppx_inline_test/config
+S /Users/travisbrady/.opam/4.05.0/lib/ppx_inline_test/runtime-lib
+S /Users/travisbrady/.opam/4.05.0/lib/sexplib0

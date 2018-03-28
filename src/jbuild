@@ -4,4 +4,6 @@
   ((name h3)
    (public_name h3)
    (c_names (h3_stubs))
+   (preprocess (pps (ppx_inline_test)))
+   (inline_tests)
    (c_library_flags (-lh3))))
