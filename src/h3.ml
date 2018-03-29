@@ -19,6 +19,8 @@ external hex_ring : h3_index -> int -> h3_index array = "caml_hexRing"
 
 let%test "test_degs_to_rads" = ((degs_to_rads 1.0) -. 0.0174533) < 0.0001
 let%test "test_rads_to_degs" = ((rads_to_degs 1.0) -. 57.2958) < 0.0001
+let%test "test_d2r_r2d_roundtrip" = (degs_to_rads 40.7128 |> rads_to_degs) = 40.7128
+let%test "test_r2d_d2r_roundtrip" = (rads_to_degs 0.7105724077 |> degs_to_rads) = 0.7105724077
 let%test "test_max_kring_size" = (max_kring_size 3) > 0
 (* From the Examples: https://uber.github.io/h3/#/documentation/core-library/unix-style-filters
 echo 40.689167 -74.044444 | geoToH3 5
