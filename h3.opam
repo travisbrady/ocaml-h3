@@ -5,7 +5,7 @@ homepage: "https://github.com/travisbrady/ocaml-h3"
 dev-repo: "https://github.com/travisbrady/ocaml-h3"
 bug-reports: "https://github.com/travisbrady/ocaml-h3/issues"
 tags: [ "computer" ]
-license: "BSD3"
+license: "Apache-2.0"
 version: "dev"
 build: [["jbuilder" "build" "--only-packages" "h3" "--root" "." "-j" jobs "@install"]]
 install: []

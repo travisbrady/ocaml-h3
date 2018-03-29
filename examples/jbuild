@@ -5,3 +5,9 @@
    (public_name simple)
    (libraries (h3))
    (modules (simple))))
+
+(executable
+  ((name index)
+   (public_name index)
+   (libraries (h3))
+   (modules (index))))

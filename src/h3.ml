@@ -14,6 +14,8 @@ external k_ring : h3_index -> int -> h3_index array = "caml_kRing"
 external k_ring_distances : h3_index -> int -> h3_index array * int array = "caml_kRingDistances"
 external hex_range : h3_index -> int -> h3_index = "caml_hexRange"
 external hex_ring_distances : h3_index -> int -> h3_index array * int array * int = "caml_hexRangeDistances"
+external hex_ranges : h3_index array -> int -> int -> h3_index array * int = "caml_hexRanges"
+external hex_ring : h3_index -> int -> h3_index array = "caml_hexRing"
 
 let%test "test_degs_to_rads" = ((degs_to_rads 1.0) -. 0.0174533) < 0.0001
 let%test "test_rads_to_degs" = ((rads_to_degs 1.0) -. 57.2958) < 0.0001

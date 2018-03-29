@@ -13,7 +13,6 @@
 #include <caml/memory.h>
 #include <caml/mlvalues.h>
 
-CAMLprim value caml_yo() { return Val_int(1); }
 CAMLprim value caml_degsToRads(value caml_degrees) {
     return caml_copy_double(degsToRads(Double_val(caml_degrees)));
 }
@@ -42,7 +41,6 @@ CAMLprim value caml_h3ToGeo(value caml_h3) {
     CAMLlocal1(ret);
     GeoCoord geo_coord = {.lat = 0.0, .lon = 0.0};
     h3ToGeo(Int64_val(caml_h3), &geo_coord);
-    printf("[C] lat=%f lon=%f\n", geo_coord.lat, geo_coord.lon);
     ret = caml_alloc_tuple(2);
     Field(ret, 0) = caml_copy_double(geo_coord.lat);
     Field(ret, 1) = caml_copy_double(geo_coord.lon);
@@ -57,7 +55,6 @@ CAMLprim value caml_h3ToGeoBoundary(value caml_h3) {
     ret = caml_alloc_tuple(2);
     arr = caml_alloc(gb.numVerts, Abstract_tag);
     for (int i = 0; i < gb.numVerts; i++) {
-        printf("[c] i=%d lat=%f lon=%f\n", i, gb.verts[i].lat, gb.verts[i].lon);
         this_tup = caml_alloc_tuple(2);
         Store_double_field(this_tup, 0, gb.verts[i].lat);
         Store_double_field(this_tup, 1, gb.verts[i].lon);
@@ -65,7 +62,6 @@ CAMLprim value caml_h3ToGeoBoundary(value caml_h3) {
     }
     Field(ret, 0) = Val_int(gb.numVerts);
     Field(ret, 1) = arr;
-    printf("[c] return!\n");
     CAMLreturn(ret);
 }
 
@@ -135,5 +131,40 @@ CAMLprim value caml_hexRangeDistances(value v_origin, value v_k) {
     Field(ret, 2) = res;
     free(rings);
     free(distances);
+    CAMLreturn(ret);
+}
+
+CAMLprim value caml_hexRanges(value v_h3Set, value v_length, value v_k) {
+    CAMLparam3(v_h3Set, v_length, v_k);
+    CAMLlocal2(ret_array, ret);
+    int length = Int_val(v_length);
+    int k = Int_val(v_k);
+    H3Index* out = (H3Index*)calloc(k, sizeof(H3Index));
+    int res = hexRanges((H3Index*)Int64_val(v_h3Set), length, k, out);
+    ret_array = caml_alloc_tuple(k);
+    ret = caml_alloc_tuple(2);
+    for (int i = 0; i < k; i++) {
+        Field(ret_array, i) = caml_copy_int64(out[i]);
+    }
+    Field(ret, 0) = ret_array;
+    Field(ret, 1) = res;
+    free(out);
+    CAMLreturn(ret);
+}
+
+CAMLprim value caml_hexRing(value v_origin, value v_k) {
+    CAMLparam2(v_origin, v_k);
+    CAMLlocal2(ret_array, ret);
+    int k = Int_val(v_k);
+    H3Index* out = (H3Index*)calloc(k, sizeof(H3Index));
+    int res = hexRing(Int64_val(v_origin), Int_val(v_k), out);
+    ret_array = caml_alloc_tuple(k);
+    ret = caml_alloc_tuple(2);
+    for (int i = 0; i < k; i++) {
+        Field(ret_array, i) = caml_copy_int64(out[i]);
+    }
+    Field(ret, 0) = ret_array;
+    Field(ret, 1) = res;
+    free(out);
     CAMLreturn(ret);
 }
