@@ -22,11 +22,11 @@ CAMLprim value caml_radsToDegs(value caml_radians) {
 }
 
 CAMLprim value caml_hexAreaKm2(value caml_res) {
-    return caml_copy_double(Int_val(caml_res));
+    return caml_copy_double(hexAreaKm2(Int_val(caml_res)));
 }
 
 CAMLprim value caml_h3IsValid(value caml_h3) {
-    return Val_int(Int64_val(caml_h3));
+    return Val_int(h3IsValid(Int64_val(caml_h3)));
 }
 
 CAMLprim value caml_geoToH3(value caml_lat, value caml_lon, value caml_res) {
@@ -167,4 +167,41 @@ CAMLprim value caml_hexRing(value v_origin, value v_k) {
     Field(ret, 1) = res;
     free(out);
     CAMLreturn(ret);
+}
+
+/*
+CAMLprim value caml_maxPolyfillSize(value v_geoPolygon, value v_res) {
+    CAMLparam2(v_geoPolygon, v_res);
+    GeoFence geoFence;
+    value v_geoFence = Field(v_geoPolygon, 0);
+    geoFence.numVerts = Int_val(Field(v_geoFence, 0));
+    GeoCoord* verts = (GeoCoord*)calloc(geoFence.numVerts, sizeof(GeoCoord));
+    int i, j;
+    for (i = 0; i < geoFence.numVerts; i++) {
+        verts[i * 2] = Double_val(Field(Field(v_geoFence, i), 0));
+        verts[i * 2 + 1] = Double_val(Field(Field(v_geoFence, i), 1));
+    }
+    GeoPolygon geoPolygon;
+    geoPolygon.numHoles = Int_val(Field(v_geoPolygon, 1));
+    free(verts);
+}
+*/
+
+CAMLprim value caml_h3GetResolution(value v_h) {
+    return Val_int(h3GetResolution(Int64_val(v_h)));
+}
+
+CAMLprim value caml_h3GetBaseCell(value v_h) {
+    return Val_int(h3GetBaseCell(Int64_val(v_h)));
+}
+
+CAMLprim value caml_stringToH3(value v_str) {
+    return caml_copy_int64(stringToH3(String_val(v_str)));
+}
+
+// CAMLprim value caml_h3ToString(value v_h) {
+
+CAMLprim value caml_h3IndexesAreNeighbors(value v_origin, value v_destination) {
+    return Val_int(
+        h3IndexesAreNeighbors(Int64_val(v_origin), Int64_val(v_destination)));
 }
