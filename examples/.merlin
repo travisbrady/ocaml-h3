@@ -1,3 +1,4 @@
+B ../_build/default/examples/.distance.eobjs
 B ../_build/default/examples/.index.eobjs
 B ../_build/default/examples/.simple.eobjs
 B ../_build/default/src/.h3.objs
@@ -7,7 +8,7 @@ B /Users/travisbrady/.opam/4.05.0/lib/base/shadow_stdlib
 B /Users/travisbrady/.opam/4.05.0/lib/ppx_inline_test/config
 B /Users/travisbrady/.opam/4.05.0/lib/ppx_inline_test/runtime-lib
 B /Users/travisbrady/.opam/4.05.0/lib/sexplib0
-FLG -w -40 -w -40
+FLG -w -40 -w -40 -w -40
 S .
 S ../src
 S /Users/travisbrady/.opam/4.05.0/lib/base

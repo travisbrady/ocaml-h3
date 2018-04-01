@@ -11,3 +11,9 @@
    (public_name index)
    (libraries (h3))
    (modules (index))))
+
+(executable
+  ((name distance)
+   (public_name distance)
+   (libraries (h3))
+   (modules (distance))))

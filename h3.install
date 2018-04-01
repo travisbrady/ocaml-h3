@@ -15,6 +15,7 @@ lib: [
 bin: [
   "_build/install/default/bin/simple" {"simple"}
   "_build/install/default/bin/index" {"index"}
+  "_build/install/default/bin/distance" {"distance"}
 ]
 stublibs: [
   "_build/install/default/lib/stublibs/dllh3_stubs.so"

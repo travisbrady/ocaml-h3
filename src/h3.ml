@@ -1,18 +1,22 @@
 let sprintf = Printf.sprintf
 
 type h3_index = int64
+
 type geo_coord = {
     lat: float;
     lon: float
 }
+
 type geo_boundary = {
     num_verts: int;
     verts: geo_coord array
 }
+
 type geo_fence = {
     num_verts : int;
     verts : geo_coord array
 }
+
 type geo_polygon = {
     fence : geo_fence;
     num_holes : int;
