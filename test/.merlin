@@ -1,0 +1,21 @@
+B ../_build/default/src/.h3.objs
+B ../_build/default/test/.test.eobjs
+B /Users/travisbrady/.opam/4.05.0/lib/alcotest
+B /Users/travisbrady/.opam/4.05.0/lib/astring
+B /Users/travisbrady/.opam/4.05.0/lib/bytes
+B /Users/travisbrady/.opam/4.05.0/lib/cmdliner
+B /Users/travisbrady/.opam/4.05.0/lib/fmt
+B /Users/travisbrady/.opam/4.05.0/lib/ocaml
+B /Users/travisbrady/.opam/4.05.0/lib/result
+B /Users/travisbrady/.opam/4.05.0/lib/uchar
+FLG -w -40
+S .
+S ../src
+S /Users/travisbrady/.opam/4.05.0/lib/alcotest
+S /Users/travisbrady/.opam/4.05.0/lib/astring
+S /Users/travisbrady/.opam/4.05.0/lib/bytes
+S /Users/travisbrady/.opam/4.05.0/lib/cmdliner
+S /Users/travisbrady/.opam/4.05.0/lib/fmt
+S /Users/travisbrady/.opam/4.05.0/lib/ocaml
+S /Users/travisbrady/.opam/4.05.0/lib/result
+S /Users/travisbrady/.opam/4.05.0/lib/uchar

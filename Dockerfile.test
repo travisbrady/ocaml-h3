@@ -1,0 +1,23 @@
+FROM ocaml/opam:alpine_ocaml-4.05.0
+WORKDIR ocaml-h3 
+ADD h3.opam .
+
+RUN sudo apk update && \
+    sudo apk upgrade && \
+    sudo apk add m4 git cmake make gcc libtool && \
+    cd /tmp && \
+    git clone https://github.com/uber/h3.git && \
+    cd h3 && \
+    cmake . && make && \
+    sudo make install
+
+
+RUN opam update && \
+    opam pin add -yn h3 . && \
+    opam depext h3 && \
+    opam install h3 --deps-only && \
+    sudo rm -rf /var/cache/apk/*
+
+ADD . .
+RUN sudo chown -R opam:nogroup .
+CMD opam config exec make test
