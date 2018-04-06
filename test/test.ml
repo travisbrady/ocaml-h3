@@ -54,6 +54,21 @@ let test_self_not_a_neighbor () =
     let result = H3.h3_indexes_are_neighbors sf_h3 sf_h3 in
     Alcotest.(check int) "Check self not a neighbor" 0 result
 
+
+(*
+ * In C lib
+ * bin/geoToH3 9                                                                                                                Thu Apr  5 19:51:58 2018
+48.8566 2.3522
+891fb466257ffff
+*)
+let test_h3_of_geo_coord () =
+    let paris = {H3.lat=48.8566; H3.lon=2.3522} in
+    let paris_h3 = H3.h3_of_geo_coord paris 9 in
+    let paris_h3_str = sprintf "%Lx" paris_h3 in
+    Alcotest.(check string) "Check paris H3" "891fb466257ffff" paris_h3_str
+
+
+
 let test_set = [
     "test_degs_to_rads", `Slow, test_degs_to_rads;
     "test_rads_to_degs", `Slow, test_rads_to_degs;
@@ -65,6 +80,7 @@ let test_set = [
     "test_h3_to_geo", `Slow, test_h3_to_geo;
     "test_hex_area_km2_decreasing", `Slow, test_hex_area_km2_decreasing;
     "test_self_not_a_neighbor", `Slow, test_self_not_a_neighbor;
+    "test_h3_of_geo_coord", `Slow, test_h3_of_geo_coord;
 ]
 
 let () =

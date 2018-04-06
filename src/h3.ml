@@ -40,3 +40,6 @@ external h3_get_base_cell : h3_index -> int = "caml_h3GetBaseCell"
 external string_to_h3 : string -> h3_index = "caml_stringToH3"
 external hex_area_km2 : int -> float = "caml_hexAreaKm2"
 external h3_indexes_are_neighbors : h3_index -> h3_index -> int = "caml_h3IndexesAreNeighbors"
+
+let h3_of_geo_coord gc =
+    geo_to_h3 (degs_to_rads gc.lat) (degs_to_rads gc.lon)
